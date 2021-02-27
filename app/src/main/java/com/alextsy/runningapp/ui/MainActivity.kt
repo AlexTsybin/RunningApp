@@ -1,8 +1,8 @@
-package com.alextsy.runningapp
+package com.alextsy.runningapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.alextsy.runningapp.R
 import com.alextsy.runningapp.db.RunDao
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -17,6 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d("runDao", "RUNDAO: ${runDao.hashCode()}")
+
     }
 }
