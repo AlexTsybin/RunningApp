@@ -14,7 +14,8 @@ class SetupFragment : Fragment(R.layout.fragment_setup) {
         super.onViewCreated(view, savedInstanceState)
 
         tvContinue.setOnClickListener {
-            findNavController().navigate(R.id.action_setupFragment_to_runFragment)
+            val action = SetupFragmentDirections.actionSetupFragmentToRunFragment()
+            findNavController().navigate(action)
         }
     }
 }
