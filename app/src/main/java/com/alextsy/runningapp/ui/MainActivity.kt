@@ -1,5 +1,6 @@
 package com.alextsy.runningapp.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.alextsy.runningapp.R
 import com.alextsy.runningapp.db.RunDao
+import com.alextsy.runningapp.other.Constants.ACTION_SHOW_TRACKING_FRAGMENT
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -33,19 +35,31 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        navigateToTrackingFragmentIfNeeded(intent)
+
         bottomNavigationView.setupWithNavController(navHostFragment.findNavController())
 
-        navHostFragment.findNavController()
-            .addOnDestinationChangedListener { _, destination, _ ->
-                when (destination.id) {
-                    R.id.settingsFragment, R.id.runFragment, R.id.statisticsFragment ->
-                        bottomNavigationView.visibility = View.VISIBLE
-                    else -> bottomNavigationView.visibility = View.GONE
-                }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.settingsFragment, R.id.runFragment, R.id.statisticsFragment ->
+                    bottomNavigationView.visibility = View.VISIBLE
+                else -> bottomNavigationView.visibility = View.GONE
             }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        navigateToTrackingFragmentIfNeeded(intent)
+    }
+
+    private fun navigateToTrackingFragmentIfNeeded(intent: Intent?) {
+        if (intent?.action == ACTION_SHOW_TRACKING_FRAGMENT) {
+            navController.navigate(R.id.action_global_trackingFragment)
+        }
     }
 }
