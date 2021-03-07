@@ -24,7 +24,11 @@
         android:id="@+id/trackingFragment"
         android:name="com.alextsy.runningapp.ui.fragments.TrackingFragment"
         android:label="fragment_tracking"
-        tools:layout="@layout/fragment_tracking" />
+        tools:layout="@layout/fragment_tracking">
+        <action
+            android:id="@+id/action_trackingFragment_to_runFragment"
+            app:destination="@id/runFragment" />
+    </fragment>
     <fragment
         android:id="@+id/runFragment"
         android:name="com.alextsy.runningapp.ui.fragments.RunFragment"
