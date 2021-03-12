@@ -19,7 +19,7 @@ class MainViewModel @ViewModelInject constructor(
     private val runsSortedByDistance = mainRepository.getAllRunsSortedByDistance()
     private val runsSortedByCaloriesBurned = mainRepository.getAllRunsSortedByCaloriesBurned()
     private val runsSortedByTimeInMillis = mainRepository.getAllRunsSortedByTimeInMillis()
-    private val runsSortedByAvgSpeed = mainRepository.getAllRunsSortedByAvgSpeed()
+    private val runsSortedByPace = mainRepository.getAllRunsSortedByPace()
 
     private val runsEventChannel = Channel<RunsEvent>()
     val runsEvent = runsEventChannel.receiveAsFlow()
@@ -49,8 +49,8 @@ class MainViewModel @ViewModelInject constructor(
                 result?.let { runs.value = it }
             }
         }
-        runs.addSource(runsSortedByAvgSpeed) { result ->
-            if (sortType == SortType.AVG_SPEED) {
+        runs.addSource(runsSortedByPace) { result ->
+            if (sortType == SortType.PACE) {
                 result?.let { runs.value = it }
             }
         }
@@ -59,7 +59,7 @@ class MainViewModel @ViewModelInject constructor(
     fun sortRuns(sortType: SortType) = when (sortType) {
         SortType.DATE -> runsSortedByDate.value?.let { runs.value = it }
         SortType.RUNNING_TIME -> runsSortedByTimeInMillis.value?.let { runs.value = it }
-        SortType.AVG_SPEED -> runsSortedByAvgSpeed.value?.let { runs.value = it }
+        SortType.PACE -> runsSortedByPace.value?.let { runs.value = it }
         SortType.DISTANCE -> runsSortedByDistance.value?.let { runs.value = it }
         SortType.CALORIES_BURNED -> runsSortedByCaloriesBurned.value?.let { runs.value = it }
     }.also {

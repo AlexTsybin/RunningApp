@@ -67,31 +67,31 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
             it?.let {
                 val km = it / 1000f
                 val totalDistance = round(km * 10f) / 10f
-                val totalDistanceString = "${totalDistance}km"
+                val totalDistanceString = "$totalDistance km"
                 tvTotalDistance.text = totalDistanceString
             }
         })
 
-        viewModel.totalAvgSpeed.observe(viewLifecycleOwner, Observer {
+        viewModel.totalAvgPace.observe(viewLifecycleOwner, Observer {
             it?.let {
-                val avgSpeed = round(it * 10f) / 10f
-                val avgSpeedString = "${avgSpeed}km/h"
-                tvAverageSpeed.text = avgSpeedString
+                val avgPace = round(it * 10f) / 10f
+                val avgPaceString = "$avgPace min/km"
+                tvAveragePace.text = avgPaceString
             }
         })
 
         viewModel.totalCaloriesBurned.observe(viewLifecycleOwner, Observer {
             it?.let {
-                val totalCalories = "${it}kcal"
+                val totalCalories = "$it kcal"
                 tvTotalCalories.text = totalCalories
             }
         })
 
         viewModel.runsSortedByDate.observe(viewLifecycleOwner, Observer {
             it?.let {
-                val allAvgSpeeds =
-                    it.indices.map { i -> BarEntry(i.toFloat(), it[i].avgSpeedInKMH) }
-                val barDataset = BarDataSet(allAvgSpeeds, "Avg Speed Over Time").apply {
+                val allPaces =
+                    it.indices.map { i -> BarEntry(i.toFloat(), it[i].pace) }
+                val barDataset = BarDataSet(allPaces, "Avg Pace Over Time").apply {
                     valueTextColor = Color.WHITE
                     color = ContextCompat.getColor(requireContext(), R.color.colorAccent)
                 }

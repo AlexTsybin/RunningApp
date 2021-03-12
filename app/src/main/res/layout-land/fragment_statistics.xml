@@ -21,11 +21,11 @@
         android:id="@+id/tvTotalDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/_0km"
+        android:text="@string/_0_km"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="@+id/tvAverageSpeed"
-        app:layout_constraintStart_toStartOf="@+id/tvAverageSpeed"
+        app:layout_constraintEnd_toEndOf="@+id/tvAveragePace"
+        app:layout_constraintStart_toStartOf="@+id/tvAveragePace"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -53,10 +53,10 @@
         android:id="@+id/tvTotalCalories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/_0kcal"
+        android:text="@string/_0_kcal"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvAverageSpeed"
+        app:layout_constraintEnd_toStartOf="@+id/tvAveragePace"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
@@ -71,20 +71,20 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTotalCalories" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvAverageSpeedInfo"
+        android:id="@+id/tvAveragePaceInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/average_speed"
-        app:layout_constraintEnd_toEndOf="@+id/tvAverageSpeed"
+        android:text="@string/average_pace"
+        app:layout_constraintEnd_toEndOf="@+id/tvAveragePace"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/tvAverageSpeed"
-        app:layout_constraintTop_toBottomOf="@+id/tvAverageSpeed" />
+        app:layout_constraintStart_toStartOf="@+id/tvAveragePace"
+        app:layout_constraintTop_toBottomOf="@+id/tvAveragePace" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvAverageSpeed"
+        android:id="@+id/tvAveragePace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/_0km_h"
+        android:text="@string/_0_min_km"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/barChart"

@@ -8,11 +8,11 @@
     <string name="welcome_please_enter_your_name_and_weight">Welcome!\nPlease enter your name and weight.</string>
     <string name="kg">kg</string>
     <string name="total_distance">Total Distance</string>
-    <string name="_0km">0km</string>
+    <string name="_0_km">0 km</string>
     <string name="total_time">Total Time</string>
     <string name="_00_00_00">00:00:00</string>
     <string name="total_calories_burned">Total Calories Burned</string>
-    <string name="_0kcal">0kcal</string>
+    <string name="_0_kcal">0 kcal</string>
     <string name="average_speed">Average Speed</string>
     <string name="_0km_h">0km/h</string>
     <string name="_00_00_00_00">00:00:00:00</string>
@@ -32,12 +32,15 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="cancel_run">Cancel Run</string>
+    <string name="pace">PACE</string>
+    <string name="average_pace">Average Pace</string>
+    <string name="_0_min_km">0 min/km</string>
 
     <string-array name="filter_options">
         <item>Date</item>
         <item>Running Time</item>
         <item>Distance</item>
-        <item>Average Speed</item>
+        <item>Pace</item>
         <item>Calories Burned</item>
     </string-array>
 </resources>
