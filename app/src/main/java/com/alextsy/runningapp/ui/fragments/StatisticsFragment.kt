@@ -50,7 +50,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
             setDrawGridLines(false)
         }
         barChart.apply {
-            description.text = "Avg Speed Over Time"
+            description.text = "Avg Pace Over Time"
             legend.isEnabled = false
         }
     }
