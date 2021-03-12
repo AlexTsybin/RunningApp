@@ -46,7 +46,7 @@ class RunAdapter : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
             Glide.with(this).load(run.img).into(ivRunImage)
 
             val calendar = Calendar.getInstance().apply {
-                timeInMillis = run.timastamp
+                timeInMillis = run.timestamp
             }
             val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
             tvDate.text = dateFormat.format(calendar.time)

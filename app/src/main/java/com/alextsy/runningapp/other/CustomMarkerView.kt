@@ -31,7 +31,7 @@ class CustomMarkerView(
         val run = runs[curRunId]
 
         val calendar = Calendar.getInstance().apply {
-            timeInMillis = run.timastamp
+            timeInMillis = run.timestamp
         }
         val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
         tvDate.text = dateFormat.format(calendar.time)

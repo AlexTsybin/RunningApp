@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.alextsy.runningapp.db.Run
 import com.alextsy.runningapp.other.SortType
 import com.alextsy.runningapp.repositories.MainRepository
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(
@@ -18,6 +20,9 @@ class MainViewModel @ViewModelInject constructor(
     private val runsSortedByCaloriesBurned = mainRepository.getAllRunsSortedByCaloriesBurned()
     private val runsSortedByTimeInMillis = mainRepository.getAllRunsSortedByTimeInMillis()
     private val runsSortedByAvgSpeed = mainRepository.getAllRunsSortedByAvgSpeed()
+
+    private val runsEventChannel = Channel<RunsEvent>()
+    val runsEvent = runsEventChannel.receiveAsFlow()
 
     val runs = MediatorLiveData<List<Run>>()
 
@@ -63,5 +68,18 @@ class MainViewModel @ViewModelInject constructor(
 
     fun insertRun(run: Run) = viewModelScope.launch {
         mainRepository.insertRun(run)
+    }
+
+    fun onRunSwiped(run: Run) = viewModelScope.launch {
+        mainRepository.deleteRun(run)
+        runsEventChannel.send(RunsEvent.ShowUndoDeleteRunMessage(run))
+    }
+
+    fun onUndoDeleteClick(run: Run) = viewModelScope.launch {
+        mainRepository.insertRun(run)
+    }
+
+    sealed class RunsEvent {
+        data class ShowUndoDeleteRunMessage(val run: Run) : RunsEvent()
     }
 }
